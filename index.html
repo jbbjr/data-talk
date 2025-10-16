@@ -1,40 +1,1190 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Business to Bytes: A Data Engineering Journey</title>
+    
+    <!-- Reveal.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    
+    <!-- Code highlighting theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Complete VSCode Theme Override */
+        :root {
+            --bg: #1e1e1e;
+            --bg-secondary: #2d2d2d;
+            --border: #3e3e3e;
+            --text: #d4d4d4;
+            --text-dim: #808080;
+            --blue: #007acc;
+            --blue-dark: #0e639c;
+            --blue-light: #4299d4;
+            --green: #608b4e;
+            --yellow: #dcdcaa;
+            --orange: #ce9178;
+            --purple: #c586c0;
+            --pink: #f1a7c4;
+        }
+        
+        /* Reset Reveal.js defaults */
+        .reveal {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 38px;
+            font-weight: normal;
+            color: var(--text);
+        }
+        
+        .reveal .slides {
+            text-align: left;
+        }
+        
+        .reveal .backgrounds {
+            background: var(--bg);
+        }
+        
+        .reveal.has-dark-background .controls {
+            color: var(--blue);
+        }
+        
+        .reveal .progress {
+            color: var(--blue);
+            height: 3px;
+        }
+        
+        .reveal .slide-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--green);
+            background: none;
+            right: 40px;
+            bottom: 30px;
+        }
+        
+        /* Custom slide number format */
+        .reveal .slide-number::before {
+            content: '[';
+        }
+        
+        .reveal .slide-number::after {
+            content: ']';
+        }
+        
+        /* Typography */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            margin: 0 0 40px 0;
+            color: var(--text);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: normal;
+            text-transform: none;
+            text-shadow: none;
+            word-wrap: break-word;
+        }
+        
+        .reveal h1 {
+            font-size: 48px;
+        }
+        
+        .reveal h2 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--yellow);
+            font-size: 36px;
+        }
+        
+        .reveal h2::before {
+            content: '// ';
+            color: var(--green);
+        }
+        
+        .reveal h3 {
+            font-size: 24px;
+            color: var(--yellow);
+            margin-bottom: 20px;
+        }
+        
+        .reveal p {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(120deg, var(--blue) 0%, var(--blue-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        /* Center layout for title slides */
+        .center-slide {
+            text-align: center !important;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Terminal styling */
+        .terminal {
+            background: #000;
+            padding: 30px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--green);
+            font-size: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        .terminal .prompt {
+            color: var(--green);
+        }
+        
+        .terminal .cursor {
+            animation: blink 1s infinite;
+            color: var(--green);
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Code blocks */
+        .reveal pre {
+            display: block;
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 0.55em;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.5em;
+            word-wrap: break-word;
+            box-shadow: none;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        
+        .reveal code {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+        
+        .reveal pre code {
+            display: block;
+            padding: 20px;
+            overflow: auto;
+            max-height: 600px;
+            word-wrap: normal;
+            background: transparent;
+        }
+        
+        /* Custom components */
+        .comment {
+            color: var(--green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: var(--green);
+            margin-bottom: 40px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .role {
+            font-size: 16px;
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--border);
+        }
+        
+        .timeline-item {
+            position: relative;
+            text-align: center;
+            flex: 1;
+            z-index: 1;
+        }
+        
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            background: var(--blue);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(0,122,204,0.3);
+        }
+        
+        .timeline-label {
+            font-size: 14px;
+            color: var(--blue-light);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+        
+        .timeline-desc {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 5px;
+        }
+        
+        /* Two column layout */
+        .columns {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            margin: 40px 0;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* Skills Pyramid */
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 40px 0;
+        }
+        
+        .pyramid-level {
+            padding: 15px 20px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .pyramid-level:hover {
+            transform: translateX(10px);
+        }
+        
+        .pyramid-level.level-1 {
+            background: var(--blue-dark);
+            width: 40%;
+            margin: 0 auto;
+        }
+        
+        .pyramid-level.level-2 {
+            background: var(--blue);
+            width: 55%;
+            margin: 0 auto;
+        }
+        
+        .pyramid-level.level-3 {
+            background: #1e8ac7;
+            width: 70%;
+            margin: 0 auto;
+        }
+        
+        .pyramid-level.level-4 {
+            background: var(--blue-light);
+            width: 85%;
+            margin: 0 auto;
+        }
+        
+        /* Lists */
+        .reveal ul {
+            display: block;
+            margin: 20px 0 20px 30px;
+        }
+        
+        .reveal ul li {
+            padding: 8px 0;
+            color: var(--text);
+            font-size: 20px;
+            line-height: 1.6;
+        }
+        
+        .reveal ul li::marker {
+            color: var(--green);
+            content: "▸ ";
+        }
+        
+        /* TODO styling */
+        .todo {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--orange);
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--orange);
+            font-size: 0.6em;
+        }
+        
+        /* Syntax highlighting customization */
+        .hljs {
+            background: var(--bg-secondary) !important;
+            color: var(--text) !important;
+        }
+        
+        .hljs-comment {
+            color: var(--green) !important;
+        }
+        
+        .hljs-keyword {
+            color: var(--purple) !important;
+        }
+        
+        .hljs-string {
+            color: var(--orange) !important;
+        }
+        
+        .hljs-function {
+            color: var(--yellow) !important;
+        }
+        
+        .hljs-number {
+            color: #b5cea8 !important;
+        }
+        
+        /* Fragment animations */
+        .reveal .slides section .fragment {
+            opacity: 0;
+            visibility: hidden;
+            transition: all .2s ease;
+        }
+        
+        .reveal .slides section .fragment.visible {
+            opacity: 1;
+            visibility: inherit;
+        }
+        
+        .reveal .controls {
+            bottom: 30px;
+            right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- ============================================ -->
+            <!-- SECTION 1: INTRODUCTION & JOURNEY (8-10 min) -->
+            <!-- ============================================ -->
+            
+            <!-- Slide 1: Title -->
+            <section class="center-slide" data-background-color="#1e1e1e">
+                <h1>From <span class="gradient-text">Business</span> to <span class="gradient-text">Bytes</span></h1>
+                <div class="subtitle"># A Data Engineering Journey</div>
+                <p style="font-size: 20px; margin-top: 40px;">Bennett Blanco</p>
+                <p class="role">Data Engineer @ Inter Miami CF</p>
+            </section>
 
-		<title>reveal.js</title>
+            <!-- Slide 2: Quick Intro -->
+            <section data-background-color="#1e1e1e">
+                <h2>Quick Intro</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 30px; margin: 40px 0;">
+                    <img src="images/fam.jpg" alt="Family" 
+                         style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+                    <img src="images/erie_solo.jpg" alt="Running" 
+                         style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 2px solid var(--border);">
+                    <img src="images/grad.jpg" alt="Bennett" 
+                         style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+                    <img src="images/imcf.webp" alt="Inter Miami" 
+                         style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%;">
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <p style="font-size: 24px; margin-bottom: 10px;">
+                        <span style="color: var(--blue-light);">Bennett Blanco</span> 
+                        <span style="color: var(--text-dim);">|</span> 
+                        Data Engineer @ Inter Miami CF
+                    </p>
+                    <p style="font-size: 18px; color: var(--text-dim);">
+                        Rhodes class of 2023 → Boston University for Grad School  → Building data systems for MLS teams
+                    </p>
+                </div>
+                
+                <pre style="margin-top: 30px; background: transparent; border: none;"><code data-language="python" style="font-size: 20px; text-align: center;"># if you told me 3 years ago I'd be here...</code></pre>
+            </section>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+            <!-- Slide 3: Journey Timeline -->
+            <section data-background-color="#1e1e1e">
+                <h2>My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot">1</div>
+                        <div class="timeline-label">2023</div>
+                        <div class="timeline-desc">Business @ Rhodes</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">2</div>
+                        <div class="timeline-label">2024</div>
+                        <div class="timeline-desc">MS Analytics @ BU</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">3</div>
+                        <div class="timeline-label">2024</div>
+                        <div class="timeline-desc">DC United</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">4</div>
+                        <div class="timeline-label">2025</div>
+                        <div class="timeline-desc">Inter Miami CF</div>
+                    </div>
+                </div>
+                <pre><code data-language="python"># Finding My Niche
+def research_project(econometrics, marathons):
+    sports_analytics = econometrics + marathons 
+    return "Discovery Moment"</code></pre>
+                                </section>
+                    
+            </section>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+            <!-- Slide 4: Undergrad Background -->
+            <section data-background-color="#1e1e1e">
+                <h2>Starting Point</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>Freshman -> Junior Year at Rhodes</h3>
+                        <ul style="font-size: 20px;">
+                            <li>Business Major</li>
+                            <li>Marketing concentration</li>
+                            <li>Consumer behavior, brand strategy, market research</li>
+                            <li>Digital Marketing Internship</li>
+                            
+                        </ul>
+                        
+                        <div style="margin-top: 40px; text-align: center;">
+                            <img src="images/rv.jpeg" alt="Internship Company" 
+                                style="max-width: 60%; opacity: 0.9;">
+                            <p style="font-size: 16px; color: var(--text-dim); margin-top: 10px;">Red Ventures</p>
+                        </div>
+                    </div>
+                    
+                    <div class="column">
+                        <h3>Skills I Had</h3>
+                        <ul style="font-size: 20px;">
+                            <li>Excel (VLOOKUPs, pivot tables)</li>
+                            <li>SPSS (t-tests, ANOVA, basic regression)</li>
+                            <li>Basic SQL</li>
+                            <li>Data visualization (charts in PowerPoint)</li>
+                        </ul>
+                        <div style="margin-top: 30px; padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--blue);">
+                            <p style="font-size: 20px; color: var(--text); margin: 0;">
+                                <span class="comment">//</span> <strong>Inital Goal:</strong> Learn SQL and go into Marketing Analytics
+                            </p>
+                            <p style="font-size: 18px; color: var(--text-dim); margin-top: 10px;">
+                                My internship taught me that wasn't what I wanted to do
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+            <!-- Slide 5: The Pivot Moment -->
+            <section data-background-color="#1e1e1e">
+                <h2>Turning Point</h2>
+                
+                <div class="columns" style="align-items: flex-start; gap: 40px;">
+                    <div class="column" style="flex: 1.2;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <img src="images/nyc_warren.jpeg" alt="NYC Marathon" 
+                                     style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px; border: 2px solid var(--blue); box-shadow: 0 4px 20px rgba(0,122,204,0.3);">
+                                <p style="text-align: center; font-size: 14px; color: var(--text-dim); margin-top: 8px;">
+                                    2021 NYC Marathon
+                                </p>
+                            </div>
+                            <div>
+                                <img src="images/chicago_21.jpg" alt="Chicago Marathon" 
+                                     style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px; border: 2px solid var(--blue); box-shadow: 0 4px 20px rgba(0,122,204,0.3);">
+                                <p style="text-align: center; font-size: 14px; color: var(--text-dim); margin-top: 8px;">
+                                    2022 Chicago Marathon
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="column" style="flex: 0.8;">
+                        <h3 style="color: var(--blue-light); margin-bottom: 30px; margin-top: 0; font-size: 23px;">Fall 2022: Three Things Collided</h3>
+                        <ul style="font-size: 22px;">
+                            <li>Ran my first two marathons</li>
+                            <li>ECON 420 (Econometrics)</li>
+                            <li>CS 142 | CS 241 (OOP & DSA)</li>
+                        </ul>
+                        
+                        <div style="margin-top: 40px; padding: 20px; background: var(--bg-secondary); border-left: 4px solid var(--green); border-radius: 4px;">
+                            <p style="font-size: 20px; color: var(--text); margin: 0;">
+                                <span class="comment">//</span> "What if I web-scraped marathon results to see how weather affects performance?"
+                            </p>
+                        </div>
+                        
+                        <p style="font-size: 20px; margin-top: 30px; line-height: 1.6;">
+                            What started as a <span style="color: var(--orange);">side project</span> to upskill, became an 
+                            <span style="color: var(--blue-light);">ongoing research collaboration</span> with the Economics department
+                        </p>
+                    </div>
+                </div>
+                
+                <pre style="margin-top: 40px; background: transparent; border: none;"><code data-language="python" style="font-size: 22px; text-align: center;"># Started spending more time in my electives than my major</code></pre>
+            </section>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+            <!-- Slide 6: Grad School Experience -->
+            <section data-background-color="#1e1e1e">
+                <h2>The Credential Gap</h2>
+                
+                <p style="font-size: 21px; color: var(--text); margin-bottom: 50px; text-align: center;">
+                    I had side projects and some CS courses — but <span style="color: var(--orange);">a business degree wasn't passing the screen</span>
+                </p>
+                
+                <div class="columns" style="align-items: flex-start;">
+                    <div class="column">
+                        <h3>The Reality</h3>
+                        <ul style="font-size: 20px;">
+                            <li>Had: Python, Java, SQL, data structures</li>
+                            <li>Needed: ML, cloud platforms (AWS/GCP)</li>
+                            <li><strong>The real problem:</strong> "Business major" = automatic rejection for technical roles</li>
+                            <li>An MS felt like a preqrequisite</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column">
+                        <h3>What Grad School Gave Me</h3>
+                        <ul style="font-size: 20px;">
+                            <li>Machine learning foundations</li>
+                            <li>Cloud platforms (AWS, GCP, Azure)</li>
+                            <li>The credential to get past the filter</li>
+                            <li><strong>Most importantly:</strong> More time for self-learning</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px; padding: 25px; background: var(--bg-secondary); border-left: 4px solid var(--orange); border-radius: 8px;">
+                    <p style="font-size: 20px; color: var(--text); margin: 0; text-align: center;">
+                        <span style="color: var(--green);">Jan 2024:</span> Started MS Analytics → 
+                        <span style="color: var(--green);">Sept 2024:</span> DC United Internship → 
+                        <span style="color: var(--green);">Jan 2025:</span> Inter Miami 
+                    </p>
+                </div>
+                
+                <pre style="margin-top: 30px; background: transparent; border: none;"><code data-language="python" style="font-size: 22px; text-align: center;"># the degree opened doors that side projects alone couldn't</code></pre>
+            </section>
+
+            <!-- Slide 6: What I Wish I Knew -->
+            <section data-background-color="#1e1e1e">
+                <h2>What I Wish I Knew as an Undergrad</h2>
+                <div class="todo">
+                    TODO: 4-6 key insights you wish you had earlier<br>
+                    - About the career path<br>
+                    - About learning/skill development<br>
+                    - About networking<br>
+                    - About the industry<br>
+                    - Practical advice that would have saved time
+                </div>
+                <pre><code data-language="python"># Example structure:
+lessons_learned = [
+    "Start coding early, even if it feels scary",
+    "SQL is more important than you think",
+    # TODO: Add your actual lessons
+]</code></pre>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- SECTION 2: DAY IN THE LIFE (8-10 min) -->
+            <!-- ============================================ -->
+
+            <!-- Section Break -->
+            <section class="center-slide" data-background-color="#1e1e1e">
+                <div class="terminal">
+                    <span class="prompt">$ python day_in_life.py</span><br>
+                    <span class="cursor">█</span>
+                </div>
+            </section>
+
+            <!-- Slide 7: Morning Routine -->
+            <section data-background-color="#1e1e1e">
+                <h2>9:00 AM - Starting the Day</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>First Things First</h3>
+                        <div class="todo">
+                            TODO: What do you actually check?<br>
+                            - Pipeline dashboards?<br>
+                            - Slack channels?<br>
+                            - Email alerts?<br>
+                            - Data quality checks?
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>Today's Priorities</h3>
+                        <div class="todo">
+                            TODO: How do you organize your day?<br>
+                            - Planned work vs firefighting<br>
+                            - Meetings vs heads-down time<br>
+                            - Collaboration touchpoints
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Typical Tuesday -->
+            <section data-background-color="#1e1e1e">
+                <h2>A Real Tuesday</h2>
+                <div class="todo">
+                    TODO: Walk through an actual day<br>
+                    - Mix of planned work and unexpected issues<br>
+                    - Show variety: coding, meetings, debugging, analysis<br>
+                    - Include realistic challenges and wins
+                </div>
+                <pre><code data-language="python"># TODO: Timeline of a real day
+# 9:00 - Check pipelines
+# 10:30 - Debug data quality issue
+# 12:00 - Lunch meeting with analytics team
+# etc.</code></pre>
+            </section>
+
+            <!-- Slide 9: Collaboration -->
+            <section data-background-color="#1e1e1e">
+                <h2>Who I Work With Daily</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="todo">
+                            TODO: List key collaborators<br>
+                            - Analysts<br>
+                            - Coaches/domain experts<br>
+                            - Other engineers<br>
+                            - Product/business stakeholders
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="todo">
+                            TODO: Types of interactions<br>
+                            - Data requests<br>
+                            - Troubleshooting sessions<br>
+                            - Planning meetings<br>
+                            - Knowledge sharing
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: Expectations vs Reality -->
+            <section data-background-color="#1e1e1e">
+                <h2>Expectations vs Reality</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>What People Think I Do</h3>
+                        <div class="todo">
+                            TODO: Common misconceptions<br>
+                            - Building AI models all day?<br>
+                            - Writing elegant code?<br>
+                            - Working with clean data?
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>What I Actually Do</h3>
+                        <div class="todo">
+                            TODO: Honest breakdown<br>
+                            - % time on different activities<br>
+                            - Debugging, data cleaning, meetings<br>
+                            - Writing documentation
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- SECTION 3: FOUNDATIONS (10-12 min) -->
+            <!-- ============================================ -->
+
+            <!-- Section Break -->
+            <section class="center-slide" data-background-color="#1e1e1e">
+                <h1 style="font-size: 60px;">Foundation <span class="gradient-text">Skills</span></h1>
+                <p class="comment" style="font-size: 24px;"># Master the basics, the rest follows</p>
+            </section>
+
+            <!-- Slide 11: The Skills Pyramid -->
+            <section data-background-color="#1e1e1e">
+                <h2>The Foundation Stack</h2>
+                <div class="pyramid">
+                    <div class="pyramid-level level-1">Advanced: ML/AI</div>
+                    <div class="pyramid-level level-2">Python & Cloud</div>
+                    <div class="pyramid-level level-3">SQL & Git</div>
+                    <div class="pyramid-level level-4">Excel & Statistics</div>
+                </div>
+                <div class="todo">
+                    TODO: Add explanation of why each layer matters<br>
+                    - Bottom layer = most used daily<br>
+                    - You can contribute on Day 1 with bottom layers<br>
+                    - Top layers = nice to have but not immediate need
+                </div>
+            </section>
+
+            <!-- Slide 12: Excel Isn't Dead -->
+            <section data-background-color="#1e1e1e">
+                <h2>Excel: Still Relevant</h2>
+                <div class="todo">
+                    TODO: Why Excel still matters in 2025<br>
+                    - Business users love it<br>
+                    - Quick ad-hoc analysis<br>
+                    - Pivot tables, formulas you actually use<br>
+                    - When you reach for Excel vs Python<br>
+                    - Real example from your work
+                </div>
+                <pre><code data-language="python"># TODO: Show when Excel is the right tool
+# "Can I answer this in 30 seconds with Excel?" → Yes? Use Excel.</code></pre>
+            </section>
+
+            <!-- Slide 13: SQL is Your Superpower -->
+            <section data-background-color="#1e1e1e">
+                <h2>SQL: Your Daily Driver</h2>
+                <div class="todo">
+                    TODO: Why SQL matters most<br>
+                    - You'll use it every single day<br>
+                    - Example query you run frequently<br>
+                    - How it unlocks data access<br>
+                    - From simple SELECT to complex JOINs
+                </div>
+                <pre><code data-language="sql">-- TODO: Add a real query you use often
+-- Something that shows practical application
+-- Maybe player stats or game data?</code></pre>
+            </section>
+
+            <!-- Slide 14: Statistics Fundamentals -->
+            <section data-background-color="#1e1e1e">
+                <h2>Statistics You Actually Use</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>Core Concepts</h3>
+                        <div class="todo">
+                            TODO: Stats you use weekly<br>
+                            - Mean, median, distribution<br>
+                            - Correlation vs causation<br>
+                            - Statistical significance<br>
+                            - When to use what
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>Real Application</h3>
+                        <div class="todo">
+                            TODO: Actual example from work<br>
+                            - How you used stats to solve a problem<br>
+                            - Why understanding stats prevented a mistake<br>
+                            - Business context
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 15: Data Visualization -->
+            <section data-background-color="#1e1e1e">
+                <h2>Data Visualization Principles</h2>
+                <div class="todo">
+                    TODO: Good vs bad examples<br>
+                    - What makes a dashboard useful?<br>
+                    - Common mistakes you've seen<br>
+                    - Tools you use (Tableau, PowerBI, Python?)<br>
+                    - Maybe show before/after of a viz you improved
+                </div>
+            </section>
+
+            <!-- Slide 16: Asking Business Questions -->
+            <section data-background-color="#1e1e1e">
+                <h2>The Most Important Skill</h2>
+                <h3>Asking the Right Questions</h3>
+                <div class="todo">
+                    TODO: Framework for translating business needs<br>
+                    - Example: "We need better performance data"<br>
+                    - How you dig deeper to understand the real need<br>
+                    - Questions you ask stakeholders<br>
+                    - How you turn vague requests into clear requirements
+                </div>
+                <pre><code data-language="python"># TODO: Show question framework
+# What problem are we solving?
+# Who will use this data?
+# What decision will this inform?
+# How often do we need it?</code></pre>
+            </section>
+
+            <!-- Slide 17: Storytelling with Data -->
+            <section data-background-color="#1e1e1e">
+                <h2>Storytelling with Data</h2>
+                <div class="todo">
+                    TODO: Why technical skills aren't enough<br>
+                    - Example of translating technical findings to business impact<br>
+                    - How you present data to non-technical stakeholders<br>
+                    - Structure: Context → Insight → Action<br>
+                    - Real example where storytelling mattered
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- SECTION 4: REAL WORKFLOWS (12-15 min) -->
+            <!-- ============================================ -->
+
+            <!-- Section Break -->
+            <section class="center-slide" data-background-color="#1e1e1e">
+                <div class="terminal">
+                    <span class="prompt">$ python real_world_data.py</span><br>
+                    <span class="comment" style="font-size: 24px;"># Where theory meets reality</span><br>
+                    <span class="cursor">█</span>
+                </div>
+            </section>
+
+            <!-- Slide 18: Data Sources -->
+            <section data-background-color="#1e1e1e">
+                <h2>Where Data Comes From</h2>
+                <div class="todo">
+                    TODO: Map your actual data sources<br>
+                    - GPS tracking devices<br>
+                    - Video analysis systems<br>
+                    - Manual entry by coaches<br>
+                    - Third-party APIs<br>
+                    - Each has different format, frequency, reliability
+                </div>
+                <pre><code data-language="python"># TODO: Show the variety
+sources = {
+    "gps_trackers": {"format": "JSON", "frequency": "real-time"},
+    # Add your actual sources
+}</code></pre>
+            </section>
+
+            <!-- Slide 19: Data Collection Pipeline -->
+            <section data-background-color="#1e1e1e">
+                <h2>Collection → Storage</h2>
+                <div class="todo">
+                    TODO: High-level architecture<br>
+                    - How data gets from source to database<br>
+                    - APIs, webhooks, batch uploads<br>
+                    - Where it's stored (databases, data lake?)<br>
+                    - Simple diagram or flow
+                </div>
+            </section>
+
+            <!-- Slide 20: Data Cleaning Reality -->
+            <section data-background-color="#1e1e1e">
+                <h2>The Data Cleaning Journey</h2>
+                <div class="todo">
+                    TODO: Actual cleaning steps you do<br>
+                    - Validation (is this value possible?)<br>
+                    - Standardization (name formats, units)<br>
+                    - Handling nulls/missing data<br>
+                    - De-duplication<br>
+                    - Real example of messy data you fixed
+                </div>
+                <pre><code data-language="python"># TODO: Before and after example
+# Show actual messy data you encountered</code></pre>
+            </section>
+
+            <!-- Slide 21: Transformation & Enrichment -->
+            <section data-background-color="#1e1e1e">
+                <h2>Transforming Data</h2>
+                <div class="todo">
+                    TODO: How you make data useful<br>
+                    - Aggregations (daily summaries, averages)<br>
+                    - Joining multiple sources<br>
+                    - Creating derived metrics<br>
+                    - Example transformation pipeline
+                </div>
+            </section>
+
+            <!-- Slide 22: Data Quality Challenges -->
+            <section data-background-color="#1e1e1e">
+                <h2>Data Quality War Stories</h2>
+                <div class="todo">
+                    TODO: Real examples of data problems<br>
+                    - Inconsistent player names/IDs<br>
+                    - Timezone issues<br>
+                    - Device failures mid-game<br>
+                    - Manual entry errors<br>
+                    - How you caught and fixed them
+                </div>
+                <pre><code data-language="python"># TODO: Add actual problematic data examples
+# Show how bad data can be and how you handle it</code></pre>
+            </section>
+
+            <!-- Slide 23: Case Study 1 -->
+            <section data-background-color="#1e1e1e">
+                <h2>Case Study: [Problem You Solved]</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>The Problem</h3>
+                        <div class="todo">
+                            TODO: Pick a real project<br>
+                            - What was broken/missing?<br>
+                            - Who was affected?<br>
+                            - Business impact
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>The Solution</h3>
+                        <div class="todo">
+                            TODO: How you solved it<br>
+                            - Approach/methodology<br>
+                            - Technical implementation<br>
+                            - Results/impact
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 24: Case Study 2 -->
+            <section data-background-color="#1e1e1e">
+                <h2>Case Study: [Another Example]</h2>
+                <div class="todo">
+                    TODO: Second real example<br>
+                    - Different type of problem<br>
+                    - Show variety of work you do<br>
+                    - Could be ongoing project<br>
+                    - Include challenges and learnings
+                </div>
+            </section>
+
+            <!-- Slide 25: Daily Problem Solving -->
+            <section data-background-color="#1e1e1e">
+                <h2>Everyday Challenges</h2>
+                <div class="todo">
+                    TODO: Smaller problems you handle regularly<br>
+                    - Data discrepancies<br>
+                    - Performance issues<br>
+                    - Ad-hoc requests<br>
+                    - Quick fixes vs long-term solutions
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- SECTION 5: DE-ANALYTICS RELATIONSHIP (5-7 min) -->
+            <!-- ============================================ -->
+
+            <!-- Slide 26: The Data Stack -->
+            <section data-background-color="#1e1e1e">
+                <h2>How Engineers Enable Analysts</h2>
+                <div class="todo">
+                    TODO: Show the infrastructure layer<br>
+                    - You build: databases, pipelines, APIs<br>
+                    - Analysts use: dashboards, queries, reports<br>
+                    - Simple architecture diagram showing relationship<br>
+                    - Tools at each layer
+                </div>
+            </section>
+
+            <!-- Slide 27: Request to Solution -->
+            <section data-background-color="#1e1e1e">
+                <h2>Collaboration in Action</h2>
+                <div class="todo">
+                    TODO: Walk through a real analyst request<br>
+                    - Initial ask (usually vague)<br>
+                    - Your questions to clarify<br>
+                    - How you built the solution<br>
+                    - The back-and-forth iteration<br>
+                    - Final delivered product
+                </div>
+            </section>
+
+            <!-- Slide 28: Team Dynamics -->
+            <section data-background-color="#1e1e1e">
+                <h2>The Data Team Ecosystem</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>Different Roles</h3>
+                        <div class="todo">
+                            TODO: Who does what<br>
+                            - Data Engineers<br>
+                            - Data Analysts<br>
+                            - Data Scientists<br>
+                            - Business stakeholders
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>How We Work Together</h3>
+                        <div class="todo">
+                            TODO: Collaboration patterns<br>
+                            - Communication channels<br>
+                            - Meeting cadence<br>
+                            - Shared responsibilities<br>
+                            - How you support each other
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- SECTION 6: CAREER ADVICE (5-7 min) -->
+            <!-- ============================================ -->
+
+            <!-- Slide 29: Action Plan - Technical -->
+            <section data-background-color="#1e1e1e">
+                <h2>Your Action Plan: Technical</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>Start This Week</h3>
+                        <div class="todo">
+                            TODO: Concrete first steps<br>
+                            - SQL practice (specific sites)<br>
+                            - Python basics (which course?)<br>
+                            - Git fundamentals<br>
+                            - One small project idea
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>Build Over Semester</h3>
+                        <div class="todo">
+                            TODO: Medium-term goals<br>
+                            - Portfolio projects<br>
+                            - GitHub presence<br>
+                            - Technical blog?<br>
+                            - Contributing to open source
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 30: Projects & Internships -->
+            <section data-background-color="#1e1e1e">
+                <h2>Projects That Matter</h2>
+                <div class="todo">
+                    TODO: Your actual project experience<br>
+                    - Personal project you worked on<br>
+                    - What you learned from it<br>
+                    - How it helped in interviews<br>
+                    - Why side projects > just coursework<br>
+                    - Project ideas for students
+                </div>
+            </section>
+
+            <!-- Slide 31: Soft Skills Matter -->
+            <section data-background-color="#1e1e1e">
+                <h2>What Actually Matters</h2>
+                <div class="todo">
+                    TODO: Skills beyond coding<br>
+                    - Communication (translating technical → business)<br>
+                    - Problem-solving approach<br>
+                    - Learning how to learn<br>
+                    - Handling ambiguity<br>
+                    - Working with stakeholders
+                </div>
+                <pre><code data-language="python"># TODO: Add insight about soft skills
+# "Being right" < "Being understood"</code></pre>
+            </section>
+
+            <!-- Slide 32: Adaptability -->
+            <section data-background-color="#1e1e1e">
+                <h2>Tools Change, Mindset Doesn't</h2>
+                <div class="todo">
+                    TODO: What you've learned about change<br>
+                    - Tools you've had to learn on the job<br>
+                    - How the field evolves quickly<br>
+                    - Why curiosity > specific tool knowledge<br>
+                    - How to stay current without burning out
+                </div>
+            </section>
+
+            <!-- Slide 33: Resources -->
+            <section data-background-color="#1e1e1e">
+                <h2>Resources & Next Steps</h2>
+                <div class="columns">
+                    <div class="column">
+                        <h3>Learn</h3>
+                        <div class="todo">
+                            TODO: Your recommended resources<br>
+                            - Specific courses/sites<br>
+                            - Books you found helpful<br>
+                            - Communities to join<br>
+                            - Podcasts/newsletters
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>Connect</h3>
+                        <div class="todo">
+                            TODO: Add your contact info<br>
+                            - LinkedIn QR code<br>
+                            - Email/socials<br>
+                            - Office hours?<br>
+                            - How students can reach out
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 34: Final Advice -->
+            <section data-background-color="#1e1e1e">
+                <h2>Parting Wisdom</h2>
+                <div class="todo">
+                    TODO: Your key takeaways for students<br>
+                    - Top 3-5 pieces of advice<br>
+                    - What you'd tell your past self<br>
+                    - Encouragement for those starting out<br>
+                    - Realistic expectations about the journey
+                </div>
+            </section>
+
+            <!-- Slide 35: Closing -->
+            <section class="center-slide" data-background-color="#1e1e1e">
+                <div class="terminal">
+                    <span class="prompt">$ python your_journey.py</span><br>
+                    <span class="comment" style="font-size: 24px;"># The best time to start was yesterday</span><br>
+                    <span class="comment" style="font-size: 24px;"># The second best time is now</span><br><br>
+                    <span>Questions?<span class="cursor">█</span></span>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            
+            // Custom slide numbers
+            slideNumber: function() {
+                let current = Reveal.getIndices().h + 1;
+                let total = Reveal.getTotalSlides();
+                return current + '/' + total;
+            },
+            
+            plugins: [ RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
 </html>
