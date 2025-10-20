@@ -1261,12 +1261,7 @@ sources = {
             transition: 'slide',
             backgroundTransition: 'fade',
             
-            // Custom slide numbers
-            slideNumber: function() {
-                let current = Reveal.getIndices().h + 1;
-                let total = Reveal.getTotalSlides();
-                return current + '/' + total;
-            },
+            slideNumber: 'c',  // <-- Use this instead of your function
             
             plugins: [ RevealHighlight, RevealNotes ]
         });
