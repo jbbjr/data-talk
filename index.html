@@ -837,78 +837,119 @@ def research_project(econometrics, marathons):
                 </div>
             </section>
 
-            <!-- Slide 14: Excel Isn't Dead -->
-            <section data-background-color="#1e1e1e">
-                <h2>Excel: Still Relevant</h2>
-                <div class="todo">
-                    TODO: Why Excel still matters in 2025<br>
-                    - Business users love it<br>
-                    - Quick ad-hoc analysis<br>
-                    - Pivot tables, formulas you actually use<br>
-                    - When you reach for Excel vs Python<br>
-                    - Real example from your work
-                </div>
-                <pre><code data-language="python"># TODO: Show when Excel is the right tool
-# "Can I answer this in 30 seconds with Excel?" → Yes? Use Excel.</code></pre>
-            </section>
+<!-- Slide 14: SQL: Your Daily Driver -->
+<section data-background-color="#1e1e1e">
+    <h2>SQL: Your Daily Driver</h2>
+    
+    <div class="columns">
+        <div class="column">
+            <h3>Why SQL Matters</h3>
+            <ul style="font-size: 22px;">
+                <li>Foundation for everything you build</li>
+                <li>Interface between applications</li>
+                <li>Get data in, store data out</li>
+                <li>Answer most questions with GROUP, SUM, AVG</li>
+            </ul>
+        </div>
+        
+        <div class="column" style="text-align: left;">
+            <h3 style="text-align: left;">Example</h3>
+            <pre style="margin: 0; text-align: left;"><code class="sql" style="display: block; text-align: left; padding: 20px;">-- Player distance across sessions
+SELECT 
+    player_id,
+    SUM(total_distance) as total,
+    COUNT(DISTINCT session_id)
+FROM player_drills
+WHERE player_id = 'PLAYER_123'
+GROUP BY player_id;</code></pre>
+        </div>
+    </div>
+</section>
 
-            <!-- Slide 15: SQL is Your Superpower -->
-            <section data-background-color="#1e1e1e">
-                <h2>SQL: Your Daily Driver</h2>
-                <div class="todo">
-                    TODO: Why SQL matters most<br>
-                    - You'll use it every single day<br>
-                    - Example query you run frequently<br>
-                    - How it unlocks data access<br>
-                    - From simple SELECT to complex JOINs
-                </div>
-                <pre><code data-language="sql">-- TODO: Add a real query you use often
--- Something that shows practical application
--- Maybe player stats or game data?</code></pre>
-            </section>
-
-            <!-- Slide 16: Statistics Fundamentals -->
+            <!-- Slide 15: Statistics You Actually Use -->
             <section data-background-color="#1e1e1e">
                 <h2>Statistics You Actually Use</h2>
+                
                 <div class="columns">
                     <div class="column">
-                        <h3>Core Concepts</h3>
-                        <div class="todo">
-                            TODO: Stats you use weekly<br>
-                            - Mean, median, distribution<br>
-                            - Correlation vs causation<br>
-                            - Statistical significance<br>
-                            - When to use what
-                        </div>
+                        <img src="images/statsports.jpg" alt="GPS Device" 
+                            style="width: 100%; max-width: 450px; max-height: 350px; object-fit: cover; border-radius: 8px; border: 2px solid var(--border);">
                     </div>
+                    
                     <div class="column">
-                        <h3>Real Application</h3>
-                        <div class="todo">
-                            TODO: Actual example from work<br>
-                            - How you used stats to solve a problem<br>
-                            - Why understanding stats prevented a mistake<br>
-                            - Business context
-                        </div>
+                        <h3>Catching Bad Data: Heart Rate</h3>
+                        <ul style="font-size: 22px;">
+                            <li>GPS device loses contact when improperly fitted and skew session averages</li>
+                            <li>Compare average HR to expected range for that training load</li>
+                            <li>Flag sessions where avg HR is unusually high for similar effort</li>
+                            <li>Understanding "normal" vs "outlier" catches the problem</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px; padding: 25px; background: var(--bg-secondary); border-left: 4px solid var(--orange); border-radius: 8px;">
+                    <p style="font-size: 22px; color: var(--text); margin: 0;">
+                        <span style="color: var(--orange);">Stats aren't theoretical.</span> 
+                        Understanding distributions and standard deviation is how you protect data quality daily.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 16: Data Visualization - Complex -->
+            <section data-background-color="#1e1e1e">
+                <h2>Data Visualization Principles</h2>
+                
+                <div class="columns" style="align-items: center;">
+                    <div class="column">
+                        <img src="images/pass_network.jpg" alt="Pass Network" 
+                            style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; border: 2px solid var();">
+                    </div>
+                    
+                    <div class="column">
+                        <h3 style="color: var(--purple);">Pass Network Visualization</h3>
+                        <ul style="font-size: 22px;">
+                            <li>Complex, match-specific analysis</li>
+                            <li>Looks impressive in presentations</li>
+                            <li>Takes significant time to build</li>
+                            <li><strong>Reality:</strong> Rarely gets checked by tactical staff</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Slide 17: Data Visualization -->
+            <!-- Slide 17: Data Visualization - Simple -->
             <section data-background-color="#1e1e1e">
                 <h2>Data Visualization Principles</h2>
-                <div class="todo">
-                    TODO: Good vs bad examples<br>
-                    - What makes a dashboard useful?<br>
-                    - Common mistakes you've seen<br>
-                    - Tools you use (Tableau, PowerBI, Python?)<br>
-                    - Maybe show before/after of a viz you improved
+                
+                <div class="columns" style="align-items: center;">
+                    <div class="column">
+                        <img src="images/summary.jpg" alt="Drill Summary" 
+                            style="width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px; border: 2px solid var(--blue);">
+                    </div>
+                    
+                    <div class="column">
+                        <h3 style="color: var(--blue-light);">Player Drill Summary Table</h3>
+                        <ul style="font-size: 22px;">
+                            <li>Simple, sortable table with key metrics</li>
+                            <li>All information in one view</li>
+                            <li>Quick to build and update</li>
+                            <li><strong>Reality:</strong> Used by performance staff daily</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px; padding: 25px; background: var(--bg-secondary); border-left: 4px solid var(--green); border-radius: 8px;">
+                    <p style="font-size: 22px; color: var(--text); margin: 0;">
+                        <span style="color: var(--green);">Simple beats fancy.</span> 
+                        Build for frequency of use, not to impress.
+                    </p>
                 </div>
             </section>
 
             <!-- Slide 18: Asking Business Questions -->
             <section data-background-color="#1e1e1e">
                 <h2>The Most Important Skill</h2>
-                <h3>Asking the Right Questions</h3>
+                <h3>Asking the Right Questions / Communicating Results SOFT SKILLS</h3>
                 <div class="todo">
                     TODO: Framework for translating business needs<br>
                     - Example: "We need better performance data"<br>
@@ -923,18 +964,6 @@ def research_project(econometrics, marathons):
 # How often do we need it?</code></pre>
             </section>
 
-            <!-- Slide 19: Storytelling with Data -->
-            <section data-background-color="#1e1e1e">
-                <h2>Storytelling with Data</h2>
-                <div class="todo">
-                    TODO: Why technical skills aren't enough<br>
-                    - Example of translating technical findings to business impact<br>
-                    - How you present data to non-technical stakeholders<br>
-                    - Structure: Context → Insight → Action<br>
-                    - Real example where storytelling mattered
-                </div>
-            </section>
-
             <!-- ============================================ -->
             <!-- SECTION 4: REAL WORKFLOWS (12-15 min) -->
             <!-- ============================================ -->
@@ -943,7 +972,6 @@ def research_project(econometrics, marathons):
             <section class="center-slide" data-background-color="#1e1e1e">
                 <div class="terminal">
                     <span class="prompt">$ python real_world_data.py</span><br>
-                    <span class="comment" style="font-size: 24px;"># Where theory meets reality</span><br>
                     <span class="cursor">█</span>
                 </div>
             </section>
