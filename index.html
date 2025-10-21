@@ -409,6 +409,58 @@
                 <p class="role">Data Engineer @ Inter Miami CF</p>
             </section>
 
+            <!-- Abbreviations Reference Slide -->
+            <section data-background-color="#1e1e1e">
+                <h2>Abbreviations Reference</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                    
+                    <!-- Left Column: Technical -->
+                    <div>
+                        <h3 style="color: var(--blue-light); font-size: 24px; margin-bottom: 20px;">Technical</h3>
+                        <ul style="font-size: 20px; line-height: 1.8; list-style: none; padding: 0;">
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">SQL</span> - Structured Query Language</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">API</span> - Application Programming Interface</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">ETL</span> - Extract, Transform, Load</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">JSON</span> - JavaScript Object Notation</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">OOP</span> - Object-Oriented Programming</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">DSA</span> - Data Structures & Algorithms</li>
+                        </ul>
+                        
+                        <h3 style="color: var(--blue-light); font-size: 24px; margin: 30px 0 20px 0;">Cloud & Tools</h3>
+                        <ul style="font-size: 20px; line-height: 1.8; list-style: none; padding: 0;">
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">AWS</span> - Amazon Web Services</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">GCP</span> - Google Cloud Platform</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Right Column: Stats, Roles, Industry -->
+                    <div>
+                        <h3 style="color: var(--blue-light); font-size: 24px; margin-bottom: 20px;">Statistics & Research</h3>
+                        <ul style="font-size: 20px; line-height: 1.8; list-style: none; padding: 0;">
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">SPSS</span> - Statistical Package for Social Sciences</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">ANOVA</span> - Analysis of Variance</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">ML</span> - Machine Learning</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">AI</span> - Artificial Intelligence</li>
+                        </ul>
+                        
+                        <h3 style="color: var(--blue-light); font-size: 24px; margin: 30px 0 20px 0;">Roles & Industry</h3>
+                        <ul style="font-size: 20px; line-height: 1.8; list-style: none; padding: 0;">
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">DE</span> - Data Engineer</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">DA</span> - Data Analyst</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">MLS</span> - Major League Soccer</li>
+                            <li><span style="color: var(--yellow); font-family: 'JetBrains Mono', monospace;">GPS</span> - Wearable tracking devices</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- <div style="margin-top: 50px; padding: 20px; background: var(--bg-secondary); border-left: 4px solid var(--green); border-radius: 8px; text-align: center;">
+                    <p style="font-size: 18px; color: var(--green); margin: 0; font-family: 'JetBrains Mono', monospace;">
+                        # Feel free to reference this slide anytime during the presentation
+                    </p>
+                </div> -->
+            </section>
+
             <!-- Slide 2: Quick Intro -->
             <section data-background-color="#1e1e1e">
                 <h2>Quick Intro</h2>
@@ -1309,192 +1361,229 @@ GROUP BY player_id;</code></pre>
                             <li>Replay any moment in the match</li>
                             <li>Study team shape and positioning</li>
                             <li>Analyze movement patterns</li>
-                            <li>Specific tactical use cases like "Possesion Regain"</li>
+                            <li>Specific tacitcal use cases</li>
+                            <li>Generally Handled by the Fullstack Developer (Analyst)</li>
+                            <li>DE and DA work together to build additional metrics where needed</li>
                         </ul>
                         
                         <div style="margin-top: 50px; padding: 25px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--green);">
                             <p style="font-size: 20px; color: var(--text); margin: 0;">
-                                <span style="color: var(--green);">The 2D view lets analysts see things you can't catch watching live</span>
+                                <span style="color: var(--green);">The 2D view lets coaching staff see things you can't catch watching live</span>
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ============================================ -->
-            <!-- SECTION 5: DE-ANALYTICS RELATIONSHIP (5-7 min) -->
-            <!-- ============================================ -->
-
-            <!-- Slide 28: The Data Stack -->
-            <section data-background-color="#1e1e1e">
-                <h2>How Engineers Enable Analysts</h2>
-                <div class="todo">
-                    TODO: Show the infrastructure layer<br>
-                    - You build: databases, pipelines, APIs<br>
-                    - Analysts use: dashboards, queries, reports<br>
-                    - Simple architecture diagram showing relationship<br>
-                    - Tools at each layer
-                </div>
-            </section>
-
-            <!-- Slide 29: Request to Solution -->
-            <section data-background-color="#1e1e1e">
-                <h2>Collaboration in Action</h2>
-                <div class="todo">
-                    TODO: Walk through a real analyst request<br>
-                    - Initial ask (usually vague)<br>
-                    - Your questions to clarify<br>
-                    - How you built the solution<br>
-                    - The back-and-forth iteration<br>
-                    - Final delivered product
-                </div>
-            </section>
-
-            <!-- Slide 30: Team Dynamics -->
-            <section data-background-color="#1e1e1e">
-                <h2>The Data Team Ecosystem</h2>
-                <div class="columns">
-                    <div class="column">
-                        <h3>Different Roles</h3>
-                        <div class="todo">
-                            TODO: Who does what<br>
-                            - Data Engineers<br>
-                            - Data Analysts<br>
-                            - Data Scientists<br>
-                            - Business stakeholders
-                        </div>
-                    </div>
-                    <div class="column">
-                        <h3>How We Work Together</h3>
-                        <div class="todo">
-                            TODO: Collaboration patterns<br>
-                            - Communication channels<br>
-                            - Meeting cadence<br>
-                            - Shared responsibilities<br>
-                            - How you support each other
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ============================================ -->
-            <!-- SECTION 6: CAREER ADVICE (5-7 min) -->
-            <!-- ============================================ -->
-
-            <!-- Slide 31: Action Plan - Technical -->
-            <section data-background-color="#1e1e1e">
-                <h2>Your Action Plan: Technical</h2>
-                <div class="columns">
-                    <div class="column">
-                        <h3>Start This Week</h3>
-                        <div class="todo">
-                            TODO: Concrete first steps<br>
-                            - SQL practice (specific sites)<br>
-                            - Python basics (which course?)<br>
-                            - Git fundamentals<br>
-                            - One small project idea
-                        </div>
-                    </div>
-                    <div class="column">
-                        <h3>Build Over Semester</h3>
-                        <div class="todo">
-                            TODO: Medium-term goals<br>
-                            - Portfolio projects<br>
-                            - GitHub presence<br>
-                            - Technical blog?<br>
-                            - Contributing to open source
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Slide 32: Projects & Internships -->
-            <section data-background-color="#1e1e1e">
-                <h2>Projects That Matter</h2>
-                <div class="todo">
-                    TODO: Your actual project experience<br>
-                    - Personal project you worked on<br>
-                    - What you learned from it<br>
-                    - How it helped in interviews<br>
-                    - Why side projects > just coursework<br>
-                    - Project ideas for students
-                </div>
-            </section>
-
-            <!-- Slide 33: Soft Skills Matter -->
-            <section data-background-color="#1e1e1e">
-                <h2>What Actually Matters</h2>
-                <div class="todo">
-                    TODO: Skills beyond coding<br>
-                    - Communication (translating technical → business)<br>
-                    - Problem-solving approach<br>
-                    - Learning how to learn<br>
-                    - Handling ambiguity<br>
-                    - Working with stakeholders
-                </div>
-                <pre><code data-language="python"># TODO: Add insight about soft skills
-# "Being right" < "Being understood"</code></pre>
-            </section>
-
-            <!-- Slide 34: Adaptability -->
-            <section data-background-color="#1e1e1e">
-                <h2>Tools Change, Mindset Doesn't</h2>
-                <div class="todo">
-                    TODO: What you've learned about change<br>
-                    - Tools you've had to learn on the job<br>
-                    - How the field evolves quickly<br>
-                    - Why curiosity > specific tool knowledge<br>
-                    - How to stay current without burning out
-                </div>
-            </section>
-
-            <!-- Slide 35: Resources -->
-            <section data-background-color="#1e1e1e">
-                <h2>Resources & Next Steps</h2>
-                <div class="columns">
-                    <div class="column">
-                        <h3>Learn</h3>
-                        <div class="todo">
-                            TODO: Your recommended resources<br>
-                            - Specific courses/sites<br>
-                            - Books you found helpful<br>
-                            - Communities to join<br>
-                            - Podcasts/newsletters
-                        </div>
-                    </div>
-                    <div class="column">
-                        <h3>Connect</h3>
-                        <div class="todo">
-                            TODO: Add your contact info<br>
-                            - LinkedIn QR code<br>
-                            - Email/socials<br>
-                            - Office hours?<br>
-                            - How students can reach out
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Slide 36: Final Advice -->
-            <section data-background-color="#1e1e1e">
-                <h2>Parting Wisdom</h2>
-                <div class="todo">
-                    TODO: Your key takeaways for students<br>
-                    - Top 3-5 pieces of advice<br>
-                    - What you'd tell your past self<br>
-                    - Encouragement for those starting out<br>
-                    - Realistic expectations about the journey
-                </div>
-            </section>
-
-            <!-- Slide 37: Closing -->
             <section class="center-slide" data-background-color="#1e1e1e">
-                <div class="terminal">
-                    <span class="prompt">$ python your_journey.py</span><br>
-                    <span class="comment" style="font-size: 24px;"># The best time to start was yesterday</span><br>
-                    <span class="comment" style="font-size: 24px;"># The second best time is now</span><br><br>
-                    <span>Questions?<span class="cursor">█</span></span>
+                <h1 style="font-size: 60px;">Your <span class="gradient-text">Next</span> Steps</h1>
+                <p class="comment" style="font-size: 24px;"># Building your path forward</p>
+            </section>
+
+           
+            <!-- Slide 31: Master the Essentials -->
+            <section data-background-color="#1e1e1e">
+                <h2 style="margin-bottom: 30px;">Master the Essentials</h2>
+                
+                <div class="columns" style="align-items: flex-start;">
+                    <div class="column">
+                        <h3 style="margin-bottom: 15px;">Don't Chase the Hype</h3>
+                        <ul style="font-size: 22px; margin: 10px 0;">
+                            <li>Everyone wants to jump to AI/ML/fancy stuff</li>
+                            <li>The reality: Excel, SQL, and statistics solve 90% of problems</li>
+                            <li>Build the foundation first</li>
+                            <li>Advanced tools come when you need them for specific projects</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column">
+                        <h3 style="margin-bottom: 15px;">Your Two Critical Skills</h3>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--blue-light); font-size: 20px; margin-bottom: 8px;">SQL = Your Daily Driver</h4>
+                            <ul style="font-size: 20px; margin: 10px 0;">
+                                <li>Foundation for everything you build</li>
+                                <li>Query data, answer questions, power applications</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: var(--blue-light); font-size: 20px; margin-bottom: 8px;">GitHub / Version Control</h4>
+                            <ul style="font-size: 20px; margin: 10px 0;">
+                                <li>Organize your projects and code</li>
+                                <li>Collaborate with others effectively</li>
+                                <li>Required for any technical role, learn it now, not on the job</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                
+                <div style="margin-top: 25px; padding: 20px; background: var(--bg-secondary); border-left: 4px solid var(--blue); border-radius: 8px;">
+                    <p style="font-size: 20px; color: var(--text); margin: 0; text-align: center;">
+                        <span style="color: var(--blue-light);">Master SQL and Git before anything else.</span> 
+                        These two skills will give you immediate impact in any analytics or engineering role.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 32: Build Something Real -->
+            <section data-background-color="#1e1e1e">
+                <h2>Build Something Real</h2>
+                
+                <div class="columns" style="align-items: flex-start;">
+                    <div class="column">
+                        <h3>What I Built</h3>
+                        <ul style="font-size: 22px;">
+                            <li>Web scraper collecting 10M+ marathon results</li>
+                            <li>ETL pipeline to GCP and BigQuery</li>
+                            <li>Joined with historical weather data</li>
+                            <li>Multi-way fixed effect econometric model</li>
+                            <li>Presented at Rhodes Research Symposium</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column">
+                        <h3>Why It Mattered</h3>
+                        <ul style="font-size: 22px;">
+                            <li>Got me into grad school (portfolio piece)</li>
+                            <li>Opened doors to current role (interview talking point)</li>
+                            <li>Learned more than any single class</li>
+                            <li>Demonstrated skills beyond "Business major"</li>
+                            <li>Showed initiative and curiosity</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 25px; background: var(--bg-secondary); border-left: 4px solid var(--green); border-radius: 8px;">
+                    <p style="font-size: 22px; color: var(--text); margin: 0; text-align: center;">
+                        <span style="color: var(--green);">Side projects demonstrate real problem-solving.</span> 
+                        Start small, build consistently, make it public on GitHub.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 33: Adaptability & Continuous Learning -->
+            <section data-background-color="#1e1e1e">
+                <h2>Continuous Learning & Adaptability</h2>
+                
+                <div class="columns" style="align-items: flex-start;">
+                    <div class="column">
+                        <h3>My Experience</h3>
+                        <ul style="font-size: 22px;">
+                            <li>DC United: Mage, PostgreSQL, Superset</li>
+                            <li>IMCF: Prefect, DuckDB, Terraform, AWS</li>
+                            <li>Side Projects: GCP, BigQuery, Cloud Functions</li>
+                            <li>Learned most tools on the job, not in school</li>
+                        </ul>
+                        
+                        <!-- <div style="margin-top: 30px; padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--orange);">
+                            <p style="font-size: 20px; color: var(--text); margin: 0;">
+                                <span style="color: var(--orange);">Tools change every 2-3 years.</span> Curiosity and problem-solving don't.
+                            </p>
+                        </div> -->
+                    </div>
+                    
+                    <div class="column">
+                        <h3>How I Stay Current</h3>
+                        <ul style="font-size: 22px;">
+                            <li>Read research papers and technical books</li>
+                            <li>Follow newsletters (industry trends)</li>
+                            <li>Follow top engineers and researchers</li>
+                            <li>Learn by building, not just consuming</li>
+                            <li>Join communities and engage</li>
+                        </ul>
+                        
+                        <!-- <div style="margin-top: 30px; padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--blue);">
+                            <p style="font-size: 20px; color: var(--text); margin: 0;">
+                                <span style="color: var(--blue-light);">"Learning how to learn"</span> is the most valuable meta-skill you can develop.
+                            </p>
+                        </div> -->
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 25px; background: var(--bg-secondary); border-left: 4px solid var(--green); border-radius: 8px;">
+                    <p style="font-size: 22px; color: var(--text); margin: 0; text-align: center;">
+                        The field evolves quickly. Build a continuous learning habit now.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 34: Resources & Getting Started -->
+            <section data-background-color="#1e1e1e">
+                <h2>Resources & Getting Started</h2>
+                
+                <div class="columns" style="align-items: flex-start;">
+                    <div class="column">
+                        <h3>Build Your Foundation</h3>
+                        <ul style="font-size: 20px;">
+                            <li><strong>SQL Practice:</strong> DataCamp, LeetCode</li>
+                            <li><strong>Python & Programming:</strong> Rhodes CS courses (CS 142, CS 241)</li>
+                            <li><strong>Statistics:</strong> Rhodes Economics (ECON 290)</li>
+                            <li><strong>GitHub Basics:</strong> DataCamp, GitHub Learning Lab, Projects!</li>
+                        </ul>
+                        
+                        <div style="margin-top: 25px; padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--blue);">
+                            <p style="font-size: 18px; color: var(--text); margin: 0;">
+                                <span style="color: var(--blue-light);">Take advantage of Rhodes' liberal arts flexibility</span> - take CS and Econ courses early, regardless of your major.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="column">
+                        <h3>Stay Current (After Foundations)</h3>
+                        <ul style="font-size: 20px;">
+                            <li><strong>Newsletter:</strong> TLDR</li>
+                            <li><strong>Books:</strong> 
+                                <ul style="font-size: 18px; margin-top: 8px;">
+                                    <li><em>Designing Data-Intensive Applications</em> by Martin Kleppmann</li>
+                                    <li><em>The Hundred-Page Machine Learning Book</em> by Andriy Burkov</li>
+                                </ul>
+                            </li>
+                            <li><strong>Follow:</strong> Andrej Karpathy, Yann LeCun, Andrew Ng</li>
+                            <li><strong>Communities:</strong> Join tool-specific communities (e.g., Prefect, dbt)</li>
+                            <li><strong>Practice:</strong> Build projects, contribute to open source</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- <div style="margin-top: 35px; padding: 25px; background: var(--bg-secondary); border-left: 4px solid var(--green); border-radius: 8px;">
+                    <p style="font-size: 22px; color: var(--text); margin: 0; text-align: center;">
+                        Start with courses at Rhodes, supplement with online practice, build real projects.
+                    </p>
+                </div> -->
+            </section>
+
+            <!-- Slide 35: Connect with Me -->
+            <section class="center-slide" data-background-color="#1e1e1e">
+                <h2 style="margin-bottom: 60px;">Let's Connect</h2>
+                
+                <div style="display: flex; justify-content: center; gap: 80px; margin: 60px 0;">
+                    <!-- LinkedIn -->
+                    <div style="text-align: center;">
+                        <div style="width: 120px; height: 120px; background: var(--bg-secondary); border: 2px solid var(--blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="#0077b5"/>
+                            </svg>
+                        </div>
+                        <p style="font-size: 22px; color: var(--text); margin: 0;">LinkedIn</p>
+                        <p style="font-size: 18px; color: var(--blue-light); margin-top: 8px;">linkedin.com/in/jbbjr</p>
+                    </div>
+                    
+                    <!-- GitHub -->
+                    <div style="text-align: center;">
+                        <div style="width: 120px; height: 120px; background: var(--bg-secondary); border: 2px solid var(--purple); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" fill="#c586c0"/>
+                            </svg>
+                        </div>
+                        <p style="font-size: 22px; color: var(--text); margin: 0;">GitHub</p>
+                        <p style="font-size: 18px; color: var(--purple); margin-top: 8px;">github.com/jbbjr</p>
+                    </div>
+                </div>
+                
+                <p style="font-size: 24px; color: var(--text-dim); margin-top: 80px;">
+                    Feel free to reach out with questions
+                </p>
             </section>
 
         </div>
